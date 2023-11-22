@@ -28,11 +28,17 @@
             <tbody>
                 @foreach ($trains as $train)
                     <tr>
-                        <th>{{ $train->train_code }}</th>
+                        @php
+                            $departure_time = date_create($train->departure_time);
+                            $departure_time = date_format($departure_time, 'H:i');
+                            $arrival_time = date_create($train->arrival_time);
+                            $arrival_time = date_format($arrival_time, 'H:i');
+                        @endphp
+                        <th>{{ $train->train_code }} </th>
                         <td>{{ $train->departure_station }}</td>
-                        <td>{{ $train->departure_time }}</td>
+                        <td>{{ $departure_time }}</td>
                         <td>{{ $train->arrival_station }}</td>
-                        <td>{{ $train->arrival_time }}</td>
+                        <td>{{ $arrival_time }}</td>
                     </tr>
                 @endforeach
             </tbody>
